@@ -10,6 +10,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   $sql = "SELECT username FROM user WHERE username = '$myusername' and password = '$mypassword'";
   $result = mysqli_query($con,$sql);
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+  if($row)
+  {
+    if(!empty($_POST["remember"]))
+    {
+    setcookie ("member_login",$myusername,time()+ (10 * 365 * 24 * 60 * 60));
+    setcookie ("member_password",$mypassword,time()+ (10 * 365 * 24 * 60 * 60));
+    }
+    else
+    {
+      if(isset($_COOKIE["member_login"]))
+      {
+        setcookie ("member_login","");
+      }
+      if(isset($_COOKIE["member_password"]))
+      {
+        setcookie ("member_password","");
+      }
+        header("location:index.php");
+    }
+  }
   $count = mysqli_num_rows($result);
    if($count == 1) {
          $_SESSION['login_user'] = $myusername;
@@ -55,15 +75,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Username</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Uername" name="username">
+              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Uername" name="username" value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>">
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pass">
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pass" value="<?php if(isset($_COOKIE["member_password"])) { echo $_COOKIE["member_password"]; } ?>">
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox"> Remember me
+                <input type="checkbox" name="remember" id="remember"  <?php if(isset($_COOKIE["member_login"])) { ?> checked <?php } ?>>
+                <label style="padding-left:2px;">Remember Me</label>
               </label>
             </div>
             <button type="submit" class="btn btn-success btn-block" id="myBtn">LogIn</button>
