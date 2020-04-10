@@ -1,0 +1,49 @@
+*
+{
+  color: white;
+}
+a
+{
+  color: white;
+}
+a:hover
+{
+  color: #85929E;
+}
+.bg
+{
+  background: url('../images/bg3.jpg') no-repeat;
+  webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.form-container
+{
+  border: 0px solid ;
+  padding: 50px 60px;
+  margin-bottom: 20vh;
+  margin-top: 20vh;
+  -webkit-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+  box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+}
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.bg-success
+{
+  padding: 10px 5px;
+  background-color: green;
+}
+.bg-warning
+{
+  padding: 10px 5px;
+  background-color: red;
+}
